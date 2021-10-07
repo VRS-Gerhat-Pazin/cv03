@@ -47,13 +47,27 @@ int main(void)
 
   /* Enable clock for GPIO port A*/
 
-	//type your code for GPIOA clock enable here:
+  RCC_AHBENR_REG |= (1<<17);
 
 
   /* GPIOA pin 3 and 4 setup */
+  //GPIOA3 - button
+  //mode digital input
+  GPIOA_MODER_REG &= ~((1<<6)|(1<<7));
+  //pullup, no pulldown
+  GPIOA_PUPDR_RER |= (1<<6);
+  GPIOA_PUPDR_RER &= ~(1<<7);
 
-	//type your code for GPIOA pins setup here:
-
+  //GPIOA4 - LED
+  //mode digital output
+  GPIOA_MODER_REG |= (1<<8);
+  GPIOA_MODER_REG &= (1<<9);
+  //no pullup no pulldown
+  GPIOA_PUPDR_RER &= ~((1<<8)|(1<<9));
+  //low speed
+  GPIOA_OSPEEDER_REG &= (1<<8);
+  //output push pull
+  GPIOA_OTYPER_REG &= ~((1<<4);
 
   while (1)
   {
