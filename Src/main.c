@@ -22,6 +22,25 @@
 #include "main.h"
 #include "assignment.h"
 
+int input_count=0;
+uint8_t previous_pin_state=0;
+EDGE_TYPE edgeDetect(uint8_t pin_state, uint8_t samples)
+{
+	if(pin_state != previous_pin_state){
+		input_count=1;
+	}
+	else{
+		input_count++;
+	}
+
+	if(input_count == samples){
+		if(pin_state) return RISE;
+		else return FALL;
+	}
+	previous_pin_state=pin_state;
+	return NONE;
+}
+
 int main(void)
 {
   /*
