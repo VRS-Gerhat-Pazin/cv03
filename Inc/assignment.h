@@ -51,6 +51,7 @@ EDGE_TYPE edgeDetect(uint8_t pin_state, uint8_t samples);
 /* LED and button macros */
 #define LED_ON					GPIOA_BSRR_REG |= (1<<4)
 #define LED_OFF					GPIOA_BSRR_REG |= (1<<20)
+#define LED_TOGGLE				GPIOA_ODR_REG ^= (1<<4)
 
 #define BUTTON_GET_STATE		!(GPIOA_IDR_REG & (1<<3))
 

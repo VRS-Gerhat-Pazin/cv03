@@ -88,20 +88,23 @@ int main(void)
   //output push pull
   GPIOA_OTYPER_REG &= ~(1<<4);
 
-  uint8_t led_state = 0;
-  LED_OFF;
+//  uint8_t led_state = 0;
+//  LED_OFF;
 
   while (1)
   {
 	  if(edgeDetect(BUTTON_GET_STATE, 5) == RISE) {
-		  led_state = !led_state;
+		  LED_TOGGLE;
 
-		  if(led_state) {
-			  LED_ON;
-		  }
-		  else {
-			  LED_OFF;
-		  }
+//		  older version:
+//		  led_state = !led_state;
+//
+//		  if(led_state) {
+//			  LED_ON;
+//		  }
+//		  else {
+//			  LED_OFF;
+//		  }
 	  }
   }
 
